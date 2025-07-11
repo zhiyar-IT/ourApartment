@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartment Room Rules</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #f7f7f7 60%, #e0b973 100%);
+            margin: 0;
+            color: #222;
+        }
+        header {
+            background: #3a3a3a;
+            color: #fff;
+            padding: 2.5rem 0 1.5rem 0;
+            text-align: center;
+            border-bottom: 6px solid #e0b973;
+            box-shadow: 0 2px 12px #0002;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.7rem;
+            letter-spacing: 2px;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.2rem;
+            color: #e0b973;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #0001;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        h2 {
+            color: #e0b973;
+            margin-top: 1.5rem;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+        ol {
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 1.2rem;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+        .lang-btn {
+            background: #e0b973;
+            color: #222;
+            border: none;
+            padding: 0.6rem 1.3rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 0.7rem;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 1px 4px #0001;
+        }
+        .lang-btn.active, .lang-btn:hover {
+            background: #3a3a3a;
+            color: #fff;
+        }
+        .rules-section {
+            animation: fadeIn 0.7s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: none;}
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1.2rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+        }
+        /* Kurdish font direction */
+        .rtl { direction: rtl; font-family: 'Noto Sans Arabic', 'Montserrat', Arial, sans-serif; }
+        .footer-note {
+            margin: 3rem auto 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(90deg, #e0b973 10%, #fffbe6 90%);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e0b97333;
+            font-family: 'Montserrat', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-anim {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .anim-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+        .anim-text:nth-child(2) { animation-delay: 1s; }
+        .anim-text:nth-child(3) { animation-delay: 2s; font-size: 1.3rem; color: #3a3a3a; font-weight: bold;}
+        .anim-text:nth-child(4) { animation-delay: 3s; font-style: italic; color: #b4882f;}
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        .rtl {
+            display: block;
+            direction: rtl;
+            font-family: 'Noto Sans Arabic', 'Montserrat', Arial, sans-serif;
+            color: #7a5c1b;
+            margin-top: 0.3rem;
+        }
+        @media (max-width: 700px) {
+            .footer-note { padding: 1rem 0.5rem; }
+            .anim-text.family { font-size: 1.05rem; }
+        }
+        /* Add after your existing styles */
+        .names-hero {
+            background: linear-gradient(120deg, #e0b973 40%, #fffbe6 100%);
+            padding: 2.5rem 1rem 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #e0b973;
+            box-shadow: 0 2px 16px #e0b97333;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.2s;
+        }
+        .names-hero-content h2 {
+            font-size: 2.2rem;
+            color: #3a3a3a;
+            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .names-list {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+        .names-list span {
+            background: #fff;
+            color: #b4882f;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px #e0b97333;
+            transition: transform 0.2s;
+            margin: 0.3rem 0;
+        }
+        .names-list span:hover {
+            transform: scale(1.08) rotate(-2deg);
+            background: #e0b973;
+            color: #fff;
+        }
+        .names-quote {
+            color: #7a5c1b;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        .print-btn {
+            background: #3a3a3a;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.3rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 1px 4px #0001;
+        }
+        .print-btn:hover {
+            background: #e0b973;
+            color: #222;
+        }
+        /* Print styles for clean PDF/printout */
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            .print-btn, .lang-switch, .footer-note, .names-hero {
+                display: none !important;
+            }
+            .container {
+                box-shadow: none !important;
+                background: #fff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            header, h1, h2 {
+                color: #000 !important;
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }
+        /* Responsive improvements */
+        @media (max-width: 600px) {
+            .container {
+                padding: 0.5rem !important;
+            }
+            .names-hero-content h2 {
+                font-size: 1.2rem !important;
+            }
+            .names-list span {
+                font-size: 0.95rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+            .footer-note {
+                padding: 1rem 0.3rem !important;
+            }
+            h1 {
+                font-size: 1.3rem !important;
+            }
+            h2 {
+                font-size: 1rem !important;
+            }
+            .lang-btn, .print-btn {
+                font-size: 0.9rem !important;
+                padding: 0.5rem 0.8rem !important;
+            }
+        }
+    </style>
+    <!-- Kurdish font for better display -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="names-hero">
+        <div class="names-hero-content">
+            <h2>Welcome to Our Apartment</h2>
+            <div class="names-list">
+                <span>Zhiyar</span>
+                <span>Ramyar</span>
+                <span>shad</span>
+                <span>muhammad</span>
+                <span>abdulhamid</span>
+            </div>
+            <p class="names-quote">Together we share, respect, and build a beautiful home.</p>
+        </div>
+    </section>
+    <header>
+        <h1>Apartment Room Rules</h1>
+        <p>For all 5 friends – Management & Cleaning</p>
+    </header>
+    <div class="container">
+        <div style="text-align:right; margin-bottom:1rem;">
+            <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="showLang('en')">English</button>
+            <button class="lang-btn" onclick="showLang('ku')">کوردی</button>
+            <button class="lang-btn" onclick="showLang('ar')">العربية</button>
+        </div>
+        <div id="rules-en" class="rules-section">
+            <h2>Rules</h2>
+            <ol>
+                <li>After eating, you have to wash the dishes.</li>
+                <li>Taking shoes to the hall is not allowed.</li>
+                <li>Making noises after 12 is not allowed. The person who makes the noises will be questioned.</li>
+                <li>Whenever someone (or a friend of yours) at the apartment is tired and falls asleep, making noises is not allowed. You have to be polite to your friends at all times. This rule is only valid when someone is tired.</li>
+                <li>Leaving the rubbish behind is not allowed, even for a short time, because the rubbish will pile up and cause viruses and other problems.</li>
+                <li>Everyone must take their rubbish outside. It is not allowed for anyone to leave rubbish in the hall or anywhere inside.</li>
+                <li>Do not leave trash on the eating table. This is a red line and not allowed.</li>
+                <li>After you go to your friends' rooms, it is not allowed to leave your rubbish inside their room. Please obey this rule.</li>
+                <li>Playing songs with high volume is not allowed when someone is sleeping. This one is important.</li>
+                <li>The most important part: Clean the WC and the shower whenever you use it.</li>
+                <li>Do not get so pissed off when something happens you don't like. Do not get mad at your friends; this makes it even worse.</li>
+                <li>When you sit in the hall after 12 pm, do not make any noises because a person might have slept.</li>
+                <li>After you wash your dishes, also please clean the sink. Do not leave the sink dirty.</li>
+                <li>Bringing your friend who others might not know is not allowed.</li>
+                <li>Only these people can enter the apartment without asking: Ramin, Sherwan, Aras.</li>
+                <li>When cleaning the rooms, hall, or anywhere, everyone must join to clean together.</li>
+                <li>Whenever a problem happens between two of you, you must inform the others and solve the problem together.</li>
+                <li>When someone older than you speaks, you have to respect and obey him.</li>
+                <li><b>Obeying these laws shows your home's real face, and not obeying them is the opposite.</b></li>
+            </ol>
+        </div>
+        <div id="rules-ku" class="rules-section rtl" style="display:none;">
+            <h2>یاساکان</h2>
+            <ol>
+                <li>دوای خواردن پێویستە قاپ  بشۆیت.</li>
+                <li>بردنى پێڵاو بۆ هۆڵ قەدەغەیە.</li>
+                <li>دروستکردنی دەنگ دوای کاتژمێر ١٢ قەدەغەیە، ئەو کەسەی دەنگ دەرده کات پرسیارى لى دەکرێت.</li>
+                <li>کاتێک کەسێک یان هاوڕێکت لە ناو شوقەکە هەستى بە ماندووبون کرد و خەوت، دەنگ دروست مەکە. پێویستە هەموو کاتێک ڕەفتارت باش بێت لەگەڵ هاوڕێکانت. ئەم یاسایە تەنها کاتێک کەسێک ماندووه بەردەستە.</li>
+                <li>جێهێشتنی زبڵ قەدەغەیە، هەر بۆ کەمترین کاتێکیش بێت. زبڵەکە زۆر دەبێت و ڤایرۆس و کێشەی تر دروست  دەکات.</li>
+                <li>هەموو کەس پێویستە زبڵەکەی فرى بدات. قەدەغەیە زبڵ لە هۆڵ یان ناو شوقە جێبهێڵیت.</li>
+                <li>جێهێشتنی زبڵ لەسەر مێزى خواردن قەدەغەیە. ئەمە هێڵی سوورە.</li>
+                <li>دوای چوون بۆ ژووری هاوڕێکت، زبڵەکەت لە ناو ژووریان جێمه هێڵە. تکایە   .</li>
+                <li>گۆرانی بە دەنگی بەرز قەدەغەیە کاتێک کەسێک خەوتووە. ئەمە گرنگە.</li>
+                <li>گرنگترین بەش: پاککردنەوەی حەمام و توالێت دوای بەکارهێنان.</li>
+                <li>کاتێک شتێک پێت نەخۆش بوو، توره  مەبە، لەگەڵ هاوڕێکانت توند مەبە.</li>
+                <li>کاتێک لە هۆڵ دانیشتوویت دوای ١٢ شەو، دەنگه دەنگ  مەکە. لەوانەیە کەسێک خەوتبێت.</li>
+                <li>دوای شۆردنی قاپه كان مه خسه له كه ش پاک بکە..</li>
+                <li>هينانى هاوڕێی نوێ کە هاوڕێکانت نەزانن قەدەغەیە.</li>
+                <li>تەنها ئەم ناوانە دەتوانن بێ پرسیارکردن بچنە ناو شوقە: ڕامین، شێروان، ئاراس.</li>
+                <li>کاتێک پاککردنەوەی ژوور یان هۆڵ یان هەر شوێنێک دەکرێت، هەموو کەس پێویستە بەشدار بێت.</li>
+                <li>ڕێز لە کاتوو ساتەکانى خوێندن بگرە  .</li>
+                <li>کاتێک کێشەیەک لەنێوان دوو کەس ڕوودەدات، پێویستە هاوڕێی تر ئاگادار بکەن و کێشەکە بە یەكه وه  چارەسەر بکەن.</li>
+                <li>کاتێک کەسێکی گەورەتر لە تۆ قسە دەکات، پێویستە ڕێزی بگریت.</li>
+                <li><b>پەیڕەو كردنى ئەم یاسایانە  ڕووی ڕاستەقینەی ماڵەوه ت نيشان ده ده يت ، تکایە رێز لە پەروەردەی دایک و باوکتان بگرن .</b></li>
+            </ol>
+        </div>
+        <div id="rules-ar" class="rules-section rtl" style="display:none;">
+            <h2>القوانين</h2>
+            <ol>
+                <li>بعد الأكل يجب عليك غسل الصحون.</li>
+                <li>إدخال الأحذية إلى الصالة غير مسموح.</li>
+                <li>إحداث الضوضاء بعد الساعة 12 غير مسموح. سيتم مساءلة من يصدر الضوضاء.</li>
+                <li>عندما يكون أحد الأصدقاء متعبًا أو نائمًا في الشقة، يجب احترام الهدوء. يجب أن تكون مهذبًا مع أصدقائك في جميع الأوقات. هذا القانون فقط عندما يكون أحدهم متعبًا.</li>
+                <li>ترك القمامة خلفك غير مسموح حتى لفترة قصيرة، لأنها ستتراكم وتسبب الأمراض.</li>
+                <li>يجب على الجميع إخراج قمامتهم. لا يُسمح بترك القمامة في الصالة أو أي مكان داخل الشقة.</li>
+                <li>لا تترك القمامة على طاولة الطعام. هذا خط أحمر وغير مسموح.</li>
+                <li>بعد زيارتك لغرفة صديقك، لا تترك قمامتك في غرفته. يرجى الالتزام بذلك.</li>
+                <li>تشغيل الأغاني بصوت عالٍ غير مسموح عندما يكون أحدهم نائمًا. هذا مهم.</li>
+                <li>الأهم: تنظيف الحمام والدوش بعد الاستخدام.</li>
+                <li>لا تغضب عندما يحدث شيء لا يعجبك. لا تغضب من أصدقائك فهذا يزيد الأمر سوءًا.</li>
+                <li>عند الجلوس في الصالة بعد الساعة 12 ليلاً، لا تصدر أي ضوضاء فقد يكون أحدهم نائمًا.</li>
+                <li>بعد غسل الصحون، يرجى تنظيف الحوض وعدم تركه متسخًا.</li>
+                <li>إحضار صديق لا يعرفه الآخرون غير مسموح.</li>
+                <li>فقط هؤلاء الأشخاص يمكنهم دخول الشقة بدون إذن: رامين، شيروان، أراس.</li>
+                <li>عند تنظيف الغرف أو الصالة أو أي مكان، يجب على الجميع المشاركة في التنظيف.</li>
+                <li>احترم أوقات الدراسة والهدوء.</li>
+                <li>عندما تحدث مشكلة بين اثنين منكم، يجب إبلاغ الآخرين وحل المشكلة معًا.</li>
+                <li>عندما يتحدث شخص أكبر منك، يجب أن تحترمه وتطيعه.</li>
+                <li><b>الالتزام بهذه القوانين يُظهر الوجه الحقيقي لمنزلك، وعدم الالتزام عكس ذلك.</b></li>
+            </ol>
+        </div>
+    </div>
+    <div class="footer-note">
+        <div class="footer-anim">
+            <span class="anim-text">
+                The laws have been written by <b>Zhiyar</b> &amp; <b>Ramyar</b>.<br>
+                <span class="rtl">ئه‌م یاسایانه‌ لەلایەن <b>ژیار</b> و <b>ڕامیار</b> نووسراوه‌.</span><br>
+                <span class="rtl">تمت كتابة هذه القوانين من قبل <b>ژيار</b> و <b>راميار</b>.</span>
+            </span>
+            <span class="anim-text">
+                If you have any problems with the laws or do not like them, <b>contact us</b> — we can solve your problem together.<br>
+                <span class="rtl">ئەگەر کێشەیەکت هەیە یان پەسەندت نييه لات <b>پەیوەندیمان پێوە بکە</b> — دەتوانین کێشەکەت چارەسەر بکەین.</span><br>
+                <span class="rtl">إذا كان لديك أي مشكلة مع القوانين أو لم تعجبك، <b>تواصل معنا</b> — يمكننا حل مشكلتك معًا.</span>
+            </span>
+            <span class="anim-text family">
+                We are one family. Respect, love, and understanding make our home a better place for everyone. 🌟<br>
+                <span class="rtl">ئێمە یەک خێزانین، ڕێز، خۆشەویستی و تێگەیشتن  بۆ هەموومان باشتره . 🌟</span><br>
+                <span class="rtl">نحن عائلة واحدة. الاحترام والمحبة والتفاهم تجعل منزلنا أفضل للجميع. 🌟</span>
+            </span>
+            <span class="anim-text quote">
+                "A happy home is built on respect, kindness, and shared responsibility."<br>
+                <span class="rtl">"خانوویكى دڵخۆش لەسەر ڕێزگرتن، مه‌هره‌بانى و ئەرک بەشکردن دادەنرێت."</span><br>
+                <span class="rtl">"البيت السعيد يُبنى على الاحترام واللطف وتقاسم المسؤولية."</span>
+            </span>
+        </div>
+    </div>
+    <script>
+        function showLang(lang) {
+            document.getElementById('rules-en').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('rules-ku').style.display = lang === 'ku' ? 'block' : 'none';
+            document.getElementById('rules-ar').style.display = lang === 'ar' ? 'block' : 'none';
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(lang === 'en') document.querySelector('.lang-btn:nth-child(1)').classList.add('active');
+            if(lang === 'ku') document.querySelector('.lang-btn:nth-child(2)').classList.add('active');
+            if(lang === 'ar') document.querySelector('.lang-btn:nth-child(3)').classList.add('active');
+        }
+    </script>
+</body>
+</html>
